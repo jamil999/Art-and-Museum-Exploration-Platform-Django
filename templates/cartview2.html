@@ -1,0 +1,206 @@
+{% load custom_tags %} {%include 'header.html' %}
+
+<!-- <script>
+  // Create a Stripe client
+  var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+
+  // Create an instance of Elements
+  var elements = stripe.elements();
+
+  // Create an instance of the card Element
+  var card = elements.create('card');
+
+  // Add an instance of the card Element into the `card-element` div
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+</script> -->
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div
+      class="row fullscreen d-flex align-items-center justify-content-center"
+    >
+      <div class="banner-content col-lg-8">
+        <h6 class="text-white">Openning on 1st September, 2023</h6>
+        <h1 class="text-white">Exhibition on Modern Era</h1>
+        <p class="pt-20 pb-20 text-white">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim. sed do eiusmod tempor incididunt..
+        </p>
+        <a href="#" class="primary-btn text-uppercase">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<div class="section-top-border">
+  <h3 class="mb-30"> Your cart has total {{total_prod}}  ticket bundles <br>  <br> Total cost of buying all tickets will be {{ total_sum }} Tk</h3>
+  <div class="progress-table-wrap">
+    <div class="progress-table">
+      <div class="table-head">
+        <div class="serial">Serial</div>
+        <div class="country">Museum</div>
+        <div class="visit">Quantity</div>
+        <div class="Per Ticket">Per Ticket</div>
+        <!-- <div class="Total">Total</div> -->
+      </div>
+
+      {% for i,j in cart|zip_lists:lst1 %}
+
+      <div class="table-row">
+        <div class="serial">{{forloop.counter}}</div>
+        <div class="country">
+          <img
+            src="{{i.item.img.url}}"
+            alt="flag"
+            style="width: 100px; height: auto"
+          />{{i.item.name}} <br />
+          Per Ticket {{i.item.price}}
+        </div>
+        <div class="visit">{{i.quant}}</div>
+        <div class="Per Ticket">{{j}}</div>
+        <!-- <div class="Total"> {{j}} </div> -->
+      </div>
+
+      {% endfor %}
+
+      <form enctype="multipart/form-data" method="post" role="product_page">
+        {% csrf_token %}
+        
+        <h5>
+          TO PAY ->
+          
+          <button
+            type="submit"
+            class="btn btn-success"
+            href="{% url 'cart' %}"
+            data-bind-href="pricing"
+            name="pay1"
+          >
+            Payment
+          </button>
+        </h5>
+      </form>
+
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-lg-7 col-md-6 offset-lg-5">
+            <form method="post">
+              {% csrf_token %}
+              <div class="col-lg-8 col-md-12">
+                <h5>               {% for i in messages %}
+                  {{ i }}
+                 {% endfor %}</h5>
+                <textarea class="form-control mb-1" name="coupon1" placeholder="Enter COUPON CODE to get Discount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your COUPON CODE'" required=""></textarea>
+                <button class="primary-btn mt-20">COUPON CODE</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- 
+        {% csrf_token %}
+        <label for="card-element">Credit or debit card:</label>
+        <div id="card-element"> -->
+      <!-- A Stripe Element will be inserted here. -->
+      <!-- </div> -->
+
+      <!-- Used to display form errors. -->
+      <!-- <div id="card-errors" role="alert"></div>
+      
+        <button type="submit">Pay Now</button>
+      </form> -->
+      <!-- <div class="table-row">
+                <div class="serial">02</div>
+                <div class="country"> <img src="img/elements/f2.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-2" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">03</div>
+                <div class="country"> <img src="img/elements/f3.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-3" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">04</div>
+                <div class="country"> <img src="img/elements/f4.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-4" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">05</div>
+                <div class="country"> <img src="img/elements/f5.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-5" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">06</div>
+                <div class="country"> <img src="img/elements/f6.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-6" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">07</div>
+                <div class="country"> <img src="img/elements/f7.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-7" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="serial">08</div>
+                <div class="country"> <img src="img/elements/f8.jpg" alt="flag">Canada</div>
+                <div class="visit">645032</div>
+                <div class="percentage">
+                    <div class="progress">
+                        <div class="progress-bar color-8" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+      {%include 'footer.html' %}
+    </div>
+  </div>
+</div>

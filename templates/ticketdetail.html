@@ -1,0 +1,109 @@
+{%include 'header.html' %}
+
+
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Ticket Details				
+							</h1>	
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html"> About Us</a></p>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
+{%include 'ooo.html' %}
+{%include 'upperofongo.html' %}
+
+
+							
+                            <!-- Start comment-sec Area -->
+                            <section class="comment-sec-area pt-80 pb-80">
+                                <div class="container">
+                                    <div class="row flex-column">
+                                        <h5 class="text-uppercase pb-80">Comments</h5>
+                                        <br>
+
+										{% for k in commentsall1 %}
+
+                                        <div class="comment-list">
+                                            <div class="single-comment justify-content-between d-flex">
+                                                <div class="user justify-content-between d-flex">
+                                                    <div class="thumb">
+                                                        <img src="/static/img/user.png" alt="">
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5><a href="#">{{k.user}}</a></h5>
+                                                        <p class="date"> {{k.when}} </p>
+                                                        <p class="comment">
+                                                            {{k.comment}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="reply-btn">
+                                                       <a href="" class="btn-reply text-uppercase">reply</a> 
+                                                </div>
+                                            </div>
+                                        </div>
+
+										{% endfor %}
+
+                                        <!-- <div class="comment-list left-padding">
+                                            <div class="single-comment justify-content-between d-flex">
+                                                <div class="user justify-content-between d-flex">
+                                                    <div class="thumb">
+                                                        <img src="img/blog/c2.jpg" alt="">
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5><a href="#">Emilly Blunt</a></h5>
+                                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                        <p class="comment">
+                                                            Never say goodbye till the end comes!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="reply-btn">
+                                                       <a href="" class="btn-reply text-uppercase">reply</a> 
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                       
+                                    
+                                                                                                                                                                                                   
+                                    </div>
+                                </div>    
+                            </section>
+                            <!-- End comment-sec Area -->
+
+							<!-- Start commentform Area -->
+							<section class="commentform-area pt-80">
+								<div class="container">
+									<h5 class="pb-50">Leave a Review</h5>
+									<div class="row flex-row d-flex">
+										<!-- <div class="col-lg-4 col-md-6">
+											<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+											<input name="email" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your email'" class="common-input mb-20 form-control" required="" type="email">
+											<input name="Subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Subject'" class="common-input mb-20 form-control" required="" type="text">
+
+										</div> -->
+
+										<form method="post">
+											  {% csrf_token %}  
+
+										<div class="col-lg-8 col-md-6">
+											<textarea class="form-control mb-10" name="comm" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+											<button class="primary-btn mt-20" >Comment</button>
+										</div>
+
+										</form>
+									</div>
+								</div>    
+							</section>
+							<!-- End commentform Area -->
+
+{%include 'footer.html' %}
